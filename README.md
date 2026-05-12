@@ -1,20 +1,25 @@
-# 🌿 Skincare Website - Full Stack Dockerized Project
+# 🌿 Full Stack E-Commerce Website
 
-A full-stack skincare website built using **HTML, CSS, JavaScript, Node.js, Express.js, MongoDB, Docker, and Nginx**.
+A full-stack web application built using HTML, CSS, JavaScript, Node.js, Express.js, MongoDB, Docker, and Nginx.
 
-This project includes:
+The project includes authentication features, contact form handling, REST APIs, and a complete multi-container Docker setup.
+
+---
+
+# 🚀 Features
 
 - User Registration
 - User Login
 - Contact Form
+- REST API Integration
 - MongoDB Database
-- Dockerized Frontend & Backend
+- Dockerized Frontend and Backend
 - Nginx Web Server
-- Docker Compose Setup
+- Multi-Container Architecture using Docker Compose
 
 ---
 
-# 📌 Tech Stack
+# 🛠 Tech Stack
 
 ## Frontend
 - HTML
@@ -30,7 +35,7 @@ This project includes:
 - MongoDB
 - Mongoose
 
-## DevOps / Deployment
+## DevOps
 - Docker
 - Docker Compose
 
@@ -62,27 +67,14 @@ project/
 
 ---
 
-# 🚀 Features
-
-- ✅ User Registration
-- ✅ User Login
-- ✅ Contact Form
-- ✅ MongoDB Database Integration
-- ✅ REST API Backend
-- ✅ Dockerized Application
-- ✅ Nginx Frontend Hosting
-- ✅ Multi-Container Setup
-
----
-
 # ⚙️ Prerequisites
 
-Make sure these tools are installed:
+Install the following tools before running the project:
 
 - Docker
 - Docker Compose
 
-Check installation:
+Verify installation:
 
 ```bash
 docker -v
@@ -92,12 +84,6 @@ docker compose version
 ---
 
 # 🐳 Backend Dockerfile
-
-Location:
-
-```bash
-backend/Dockerfile
-```
 
 ```dockerfile
 FROM node:18
@@ -119,12 +105,6 @@ CMD ["node", "server.js"]
 
 # 🌐 Frontend Dockerfile
 
-Location:
-
-```bash
-frontend/Dockerfile
-```
-
 ```dockerfile
 FROM nginx:alpine
 
@@ -136,12 +116,6 @@ EXPOSE 80
 ---
 
 # 🧱 Docker Compose Configuration
-
-Location:
-
-```bash
-docker-compose.yml
-```
 
 ```yaml
 version: "3.8"
@@ -155,7 +129,7 @@ services:
     depends_on:
       - mongo
     environment:
-      - MONGO_URL=mongodb://mongo:27017/skincare
+      - MONGO_URL=mongodb://mongo:27017/appdb
 
   frontend:
     build: ./frontend
@@ -177,19 +151,15 @@ volumes:
 
 # 🔗 MongoDB Connection
 
-Update MongoDB connection in backend:
-
 ```js
 mongoose.connect(
-  process.env.MONGO_URL || "mongodb://mongodb:27017/skincare"
+  process.env.MONGO_URL || "mongodb://mongo:27017/appdb"
 );
 ```
 
 ---
 
-# ▶️ Build Docker Containers
-
-Run from project root directory:
+# ▶️ Build Containers
 
 ```bash
 docker compose build
@@ -197,13 +167,13 @@ docker compose build
 
 ---
 
-# ▶️ Start Containers
+# ▶️ Start Application
 
 ```bash
 docker compose up
 ```
 
-Run in background:
+Run in detached mode:
 
 ```bash
 docker compose up -d
@@ -211,7 +181,7 @@ docker compose up -d
 
 ---
 
-# 🛑 Stop Containers
+# 🛑 Stop Application
 
 ```bash
 docker compose down
@@ -219,7 +189,7 @@ docker compose down
 
 ---
 
-# 🧹 Remove Containers + Volumes
+# 🧹 Remove Containers and Volumes
 
 ```bash
 docker compose down -v
@@ -235,11 +205,19 @@ docker ps
 
 ---
 
+# 📜 View Logs
+
+```bash
+docker compose logs -f
+```
+
+---
+
 # 🌍 Application URLs
 
 | Service | URL |
 |---|---|
-| Frontend | http://localhost:80 |
+| Frontend | http://localhost:8080 |
 | Backend | http://localhost:5000 |
 | MongoDB | mongodb://localhost:27017 |
 
@@ -251,54 +229,41 @@ docker ps
 |---|---|---|
 | POST | `/register` | Register User |
 | POST | `/login` | Login User |
-| POST | `/contact` | Save Contact Form |
+| POST | `/contact` | Submit Contact Form |
 
 ---
 
 # ⚠️ Important Notes
 
-## MongoDB Atlas Replaced
-
-This project uses a **MongoDB Docker Container** instead of MongoDB Atlas.
-
-### Correct MongoDB URL
+Inside Docker containers, use:
 
 ```bash
-mongodb://mongo:27017/skincare
+mongodb://mongo:27017/appdb
 ```
 
-### Wrong MongoDB URL Inside Docker
+Do not use:
 
 ```bash
 mongodb://localhost:27017
 ```
 
-Reason:
-
-- `mongo` = Docker service name
-- Docker containers communicate using service names
+Docker containers communicate using service names defined in `docker-compose.yml`.
 
 ---
 
-# 🛠 Future Improvements
+# 🔮 Future Improvements
 
 - JWT Authentication
-- bcrypt Password Hashing
-- Product APIs
-- Cart System
+- Password Hashing
+- Product Management APIs
+- Shopping Cart
 - Admin Dashboard
-- AWS EC2 Deployment
 - CI/CD Pipeline
+- Cloud Deployment
 - Kubernetes Deployment
-
----
-
-# 👨‍💻 Author
-
-**Ramandeep Kaur**
 
 ---
 
 # 📄 License
 
-This project is created for learning and educational purposes.
+This project is for learning and educational purposes.
