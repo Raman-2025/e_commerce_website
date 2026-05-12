@@ -25,7 +25,7 @@ app.get("/", (req,res)=>{
 
 });
 
-app.post("/register", async(req,res)=>{
+/*app.post("/register", async(req,res)=>{
 
     try{
 
@@ -36,6 +36,30 @@ app.post("/register", async(req,res)=>{
         res.send("User Registered");
 
     }catch(err){
+
+        res.send(err);
+
+    }
+
+}); */
+
+app.post("/register", async(req,res)=>{
+
+    try{
+
+        console.log("BODY:", req.body);
+
+        const user = new User(req.body);
+
+        await user.save();
+
+        console.log("USER SAVED");
+
+        res.send("User Registered");
+
+    }catch(err){
+
+        console.log("REGISTER ERROR:", err);
 
         res.send(err);
 
