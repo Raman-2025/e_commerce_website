@@ -116,7 +116,7 @@ registerForm.addEventListener("submit", async(e)=>{
 
     try{
 
-        const response = await fetch("http://localhost:5000/register",{
+        const response = await fetch("/api/register",{
 
             method:"POST",
 
@@ -159,7 +159,7 @@ loginForm.addEventListener("submit", async(e)=>{
 
     try{
 
-        const response = await fetch("http://localhost:5000/login",{
+        const response = await fetch("/api/login",{
 
             method:"POST",
 

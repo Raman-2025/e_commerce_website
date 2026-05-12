@@ -12,7 +12,7 @@ contactForm.addEventListener("submit", async function(e){
 
     const message = document.getElementById("message").value;
 
-    const response = await fetch("http://localhost:5000/contact",{
+    const response = await fetch("api/contact",{
 
         method:"POST",
 
