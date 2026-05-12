@@ -2,8 +2,6 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const User = require("./models/User");
-const Product = require("./models/Product");
-const Cart = require("./models/Cart");
 const Contact = require("./models/Contact");
 const app = express();
 
@@ -63,74 +61,6 @@ app.post("/login", async(req,res)=>{
         res.send("Invalid Credentials");
 
     }
-
-});
-
-app.post("/add-product", async(req,res)=>{
-
-    try{
-
-        console.log(req.body);
-
-        const product = new Product(req.body);
-
-        await product.save();
-
-        res.send("Product Added");
-
-    }catch(err){
-
-        console.log(err);
-
-        res.send(err);
-
-    }
-
-});
-
-app.get("/products", async(req,res)=>{
-
-   const products = await Product.find();
-
-   res.json(products);
-
-});
-
-app.post("/cart", async(req,res)=>{
-
-   try{
-
-      console.log(req.body);
-
-      const cartItem = new Cart(req.body);
-
-      await cartItem.save();
-
-      res.send("Product Added To Cart");
-
-   }catch(err){
-
-      console.log(err);
-
-      res.send(err);
-
-   }
-
-});
-
-app.get("/cart", async(req,res)=>{
-
-   try{
-
-      const cartItems = await Cart.find();
-
-      res.json(cartItems);
-
-   }catch(err){
-
-      res.send(err);
-
-   }
 
 });
 
